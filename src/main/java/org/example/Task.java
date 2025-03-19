@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.Enums.Status;
 
 import java.time.LocalDateTime;
 
@@ -11,10 +10,12 @@ public class Task {
     private final LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public Task(){ createdAt = LocalDateTime.now(); };
+
     public Task(int id, String description) {
         this.id = id;
         this.description = description;
-        this.status = "TODO";
+        this.status = "todo";
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }

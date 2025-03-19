@@ -10,8 +10,8 @@ import java.util.List;
 
 public class TaskManager {
     private static final String FILE_NAME = "tasks.json";
-    private ObjectMapper objectMapper;
-    private List<Task> tasks;
+    private final ObjectMapper objectMapper;
+    private final List<Task> tasks;
 
     public TaskManager() {
         objectMapper = new ObjectMapper();
@@ -48,14 +48,17 @@ public class TaskManager {
 
     public void updateTasks(int id, String description){
         for(Task task : tasks){
-            if(task.getId() == id)
+            if(task.getId() == id) {
                 task.setDescription(description);
+                System.out.println("Task updated");
+            }
         }
         saveTask();
     }
 
     public void removeTask(int id){
         tasks.removeIf(task -> task.getId() == id);
+        System.out.println("Task " + id + " successfully deleted");
         saveTask();
     }
 
@@ -84,7 +87,7 @@ public class TaskManager {
         for(Task task : tasks){
             if(task.getId() == id){
                 task.setStatus(status);
-                System.out.println("Status of task " + id + "marked succesfully as " + status);
+                System.out.println("Status of task " + id + " marked succesfully as " + status);
                 return;
             }
         }
